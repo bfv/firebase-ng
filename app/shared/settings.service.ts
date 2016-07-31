@@ -32,10 +32,22 @@ export class SettingsService {
         return this.settings;
     }
 
-    save(newSettings: Settings) {
-        applicationSettings.setBoolean("authEnabled", newSettings.authEnabled);
-        applicationSettings.setString("username", newSettings.username);
-        applicationSettings.setString("password", newSettings.password);
-        this.settings = newSettings;
+    save(newSettings: Settings) : Promise<Settings> {
+
+        return new Promise(
+            (resolve, reject) => {
+                try {
+                    applicationSettings.setBoolean("authEnabled", newSettings.authEnabled);
+                    applicationSettings.setString("username", newSettings.username);
+                    applicationSettings.setString("password", newSettings.password);
+                    this.settings = newSettings;
+                    resolve(this.settings);
+                }
+                catch(error) {
+                    reject(error);
+                }
+            }
+        )
+        
     }
 }

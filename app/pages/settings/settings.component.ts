@@ -4,6 +4,8 @@ import {Settings} from "../../shared/settings";
 import {View} from "ui/core/view";
 import {Page} from "ui/page";
 import {SettingsService} from "../../shared/settings.service";
+import {Router} from "@angular/router";
+
 
 @Component({
     selector: "settingspage",
@@ -19,7 +21,7 @@ export class SettingsPage implements OnInit {
 
     public settings: Settings;
 
-    constructor(private page: Page, private settingsService: SettingsService) {
+    constructor(private page: Page, private settingsService: SettingsService, private router: Router) {
 
     }
 
@@ -34,6 +36,13 @@ export class SettingsPage implements OnInit {
     confirmSettings() {
 
         // todo: solve this with a promise
-        this.settingsService.save(this.settings);
+        this.settingsService.save(this.settings).then(
+            () => {
+                this.router.navigate(["/"]);
+            },
+            (error) => {
+                alert("Error saving settings: \n\n" + error);
+            }
+        );
     }
 }
