@@ -5,7 +5,7 @@ import {Page} from "ui/page";
 
 @Component({
     selector: "startpage",
-    templateUrl: "pages/start/start.html",
+    templateUrl: "pages/start/start.component.html",
     styleUrls: ["app.css"],
 })
 
