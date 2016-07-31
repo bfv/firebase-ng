@@ -1,4 +1,32 @@
-<StackLayout>
-    <Label text="Settings" class="title"></Label>
-    <Switch></Switch>
+<ActionBar title="Settings">
+    <ActionItem text="OK" (tap)="confirmSettings()"></ActionItem>
+    <!--
+    <ActionItem>
+        <NavigationButton text="go back" android.systemIcon="ic_menu_back"></NavigationButton>
+    </ActionItem>
+    -->
+</ActionBar>
+<StackLayout horizontalAlignment="left">
+    <StackLayout orientation="horizontal" horizontalAlignment="left">
+        <Label text="authentication" class="settingsfield"></Label>
+        <Switch [(ngModel)]="settings.authEnabled" (ngModelChange)="authEnabledChanged($event)"></Switch>
+    </StackLayout>
+    <StackLayout #authContainer horizontalAlignment="stretch">
+        <TextField 
+            [(ngModel)]="settings.username" 
+            [isEnabled]="settings.authEnabled" 
+            hint="email address" 
+            keyboardType="email"
+            class="settingsfield"
+            >
+        </TextField>
+        <TextField 
+            [(ngModel)]="settings.password" 
+            [isEnabled]="settings.authEnabled"
+            hint="password" 
+            secure="true" 
+            class="settingsfield"
+            >
+        </TextField>
+    </StackLayout>
 </StackLayout>
