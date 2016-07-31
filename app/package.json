@@ -3,7 +3,7 @@
     "nativescript": {
         "id": "io.bfv.firebaseng"
     },
-    "name": "FirebaseNg",
+    "name": "Firebase NG",
     "main": "main.js",
     "version": "1.0.0",
     "author": "Telerik <support@telerik.com>",
