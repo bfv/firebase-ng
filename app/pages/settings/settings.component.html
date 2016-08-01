@@ -1,4 +1,4 @@
-<ActionBar title="Settings">
+<ActionBar [title]="title">
     <ActionItem text="OK" (tap)="confirmSettings()"></ActionItem>
     <!--
     <ActionItem>
@@ -7,9 +7,30 @@
     -->
 </ActionBar>
 <StackLayout horizontalAlignment="left">
-    <StackLayout orientation="horizontal" horizontalAlignment="left">
-        <Label text="authentication" class="settingsfield"></Label>
-        <Switch [(ngModel)]="settings.authEnabled" (ngModelChange)="authEnabledChanged($event)"></Switch>
+    <StackLayout orientation="horizontal" horizontalAlignment="left" class="begin-block">
+        <Label text="personal info" class="settingslabel"></Label>
+    </StackLayout>
+    <StackLayout horizontalAlignment="stretch">       
+        <TextField 
+            [(ngModel)]="settings.name" 
+            hint="name" 
+            keyboardType="name"
+            class="settingsfield"
+            >
+        </TextField>
+    </StackLayout>
+    <!--
+    <StackLayout class="horizontal-line" horizontalAlignment="stretch"> 
+        <Label text=" "></Label>
+    </StackLayout>
+    -->
+    <StackLayout orientation="horizontal" horizontalAlignment="stretch" class="begin-block">
+        <Label text="authentication" class="settingslabel"></Label>
+        <Switch 
+            [(ngModel)]="settings.authEnabled" 
+            (ngModelChange)="authEnabledChanged($event)" 
+            >
+        </Switch>
     </StackLayout>
     <StackLayout #authContainer horizontalAlignment="stretch">
         <TextField 
@@ -29,4 +50,9 @@
             >
         </TextField>
     </StackLayout>
+    <!--
+    <StackLayout class="horizontal-line" horizontalAlignment="stretch"> 
+        <Label text=" "></Label>
+    </StackLayout>
+    -->
 </StackLayout>

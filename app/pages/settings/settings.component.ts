@@ -21,6 +21,8 @@ export class SettingsPage implements OnInit {
 
     public settings: Settings;
 
+    private title: string = "Settings 1.1.7";
+
     constructor(private page: Page, private settingsService: SettingsService, private router: Router) {
 
     }
@@ -37,7 +39,8 @@ export class SettingsPage implements OnInit {
 
         // todo: solve this with a promise
         this.settingsService.save(this.settings).then(
-            () => {
+            (newSettings) => {
+                this.settings = newSettings;
                 this.router.navigate(["/"]);
             },
             (error) => {

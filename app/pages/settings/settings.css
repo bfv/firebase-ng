@@ -3,3 +3,23 @@
     width: 80%;
     margin-left: 5%;
 }
+
+.settingswidget {
+    margin-right: 5%;
+}
+
+.settingslabel {
+    margin-left: 3%;
+    width: 75%;
+}
+
+.horizontal-line {
+    height: 1;
+    background-color: #bfbfbf;
+    vertical-align: bottom;
+    margin: 12 2% 8 2%;
+}
+
+.begin-block {
+    margin-top: 20px;
+}

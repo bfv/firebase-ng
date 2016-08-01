@@ -7,39 +7,31 @@ export class SettingsService {
 
     private settings: Settings;
 
-
-    constructor() {
-        this.settings = new Settings();
+    constructor() {      
         this.fetchSettings(); 
     }
 
     private fetchSettings() {
         
-        if (applicationSettings.hasKey("authEnabled")) {
-            this.settings.authEnabled = applicationSettings.getBoolean("authEnabled");
+        if (applicationSettings.hasKey("settings")) {
+            this.settings = JSON.parse(applicationSettings.getString("settings"));
+        }
+        else {
+            this.settings = new Settings();
         }
 
-        if (applicationSettings.hasKey("username")) {
-            this.settings.username = applicationSettings.getString("username");
-        }
-
-        if (applicationSettings.hasKey("password")) {
-            this.settings.password = applicationSettings.getString("password");
-        }
-    }
+    }  // fetchSettings
 
     get(): Settings {
         return this.settings;
-    }
+    }  // get
 
     save(newSettings: Settings) : Promise<Settings> {
 
         return new Promise(
             (resolve, reject) => {
                 try {
-                    applicationSettings.setBoolean("authEnabled", newSettings.authEnabled);
-                    applicationSettings.setString("username", newSettings.username);
-                    applicationSettings.setString("password", newSettings.password);
+                    applicationSettings.setString("settings", JSON.stringify(newSettings));
                     this.settings = newSettings;
                     resolve(this.settings);
                 }
@@ -47,7 +39,6 @@ export class SettingsService {
                     reject(error);
                 }
             }
-        )
-        
-    }
+        );     
+    }  // save
 }
