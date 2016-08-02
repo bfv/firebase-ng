@@ -1,8 +1,6 @@
 
 import {Component, OnInit, ViewChild, ElementRef} from "@angular/core";
 import {Settings} from "../../shared/settings";
-import {View} from "ui/core/view";
-import {Page} from "ui/page";
 import {SettingsService} from "../../shared/settings.service";
 import {Router} from "@angular/router";
 
@@ -16,14 +14,9 @@ import {Router} from "@angular/router";
 
 export class SettingsPage implements OnInit {
 
-    @ViewChild("authContainer") authContainer: ElementRef;
-    @ViewChild("otherContainer") otherContainer: ElementRef;
+    private settings: Settings;  //public?!
 
-    public settings: Settings;
-
-    private title: string = "Settings 1.1.7";
-
-    constructor(private page: Page, private settingsService: SettingsService, private router: Router) {
+    constructor(private settingsService: SettingsService, private router: Router) {
 
     }
 
@@ -32,7 +25,7 @@ export class SettingsPage implements OnInit {
     }
 
     authEnabledChanged(event: Event) {
-        console.log("1.0.12 authEnabled changed to: " + this.settings.authEnabled);
+        // sample event handler
     }
 
     confirmSettings() {
