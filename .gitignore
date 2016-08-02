@@ -1,0 +1,12 @@
+.DS_Store
+platforms/*
+!platforms/android
+platforms/android/*
+!platforms/android/build.gradle
+
+/node_modules/
+/app/**/*.js
+/app/**/*.map
+/lib/
+/app/**/test-*.*
+/tmp/
