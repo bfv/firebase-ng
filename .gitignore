@@ -4,7 +4,16 @@ platforms/*
 platforms/android/*
 !platforms/android/build.gradle
 
-/node_modules/
+node_modules/*
+!node_modules/nativescript-plugin-firebase
+node_modules/nativescript-plugin-firebase/*
+!node_modules/nativescript-plugin-firebase/platforms
+node_modules/nativescript-plugin-firebase/platforms/*
+!node_modules/nativescript-plugin-firebase/platforms/android
+node_modules/nativescript-plugin-firebase/platforms/android/*
+!node_modules/nativescript-plugin-firebase/platforms/android/include.gradle
+
+resources
 /app/**/*.js
 /app/**/*.map
 /lib/
