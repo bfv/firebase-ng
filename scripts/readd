@@ -1,0 +1,7 @@
+#!/bin/bash
+
+tns platform remove android
+tns platform add android
+cp resources/google-services.json platforms/android
+git checkout platforms/android/build.gradle
+
