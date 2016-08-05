@@ -9,8 +9,12 @@ android {
   defaultConfig {  
     generatedDensities = []
     applicationId = "io.bfv.firebaseng"  
+    multiDexEnabled true
   }  
   aaptOptions {  
     additionalParameters "--no-version-vectors"  
   }  
+  dexOptions {
+    javaMaxHeapSize "4g"
+  }
 } 
