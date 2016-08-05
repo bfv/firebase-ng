@@ -16,14 +16,16 @@ export class SettingsService {
         if (applicationSettings.hasKey("settings")) {
             this.settings = JSON.parse(applicationSettings.getString("settings"));
         }
-        else {
+
+        if (!this.settings) {
             this.settings = new Settings();
         }
 
     }  // fetchSettings
 
     get(): Settings {
-        return this.settings;
+        // make sure a copy is returned
+        return JSON.parse(JSON.stringify(this.settings));
     }  // get
 
     save(newSettings: Settings) : Promise<Settings> {

@@ -3,6 +3,8 @@ import {Component, OnInit, ViewChild, ElementRef} from "@angular/core";
 import {Settings} from "../../shared/settings";
 import {SettingsService} from "../../shared/settings.service";
 import {Router} from "@angular/router";
+import {ApplicationService} from "../../shared/application.service";
+import {AuthResult} from "../../shared/authresult";
 
 
 @Component({
@@ -16,7 +18,7 @@ export class SettingsPage implements OnInit {
 
     private settings: Settings;  //public?!
 
-    constructor(private settingsService: SettingsService, private router: Router) {
+    constructor(private settingsService: SettingsService, private router: Router, private applicationService: ApplicationService) {
 
     }
 
@@ -30,15 +32,31 @@ export class SettingsPage implements OnInit {
 
     confirmSettings() {
 
-        // todo: solve this with a promise
-        this.settingsService.save(this.settings).then(
-            (newSettings) => {
-                this.settings = newSettings;
-                this.router.navigate(["/"]);
+        // then check if credentials are valid
+        this.applicationService.login(this.settings).then(
+            success => { 
+                if (success.ok) {
+
+                    // todo: solve this with a promise
+                    this.settingsService.save(this.settings).then(
+                        (newSettings) => {
+                            this.settings = newSettings;
+                        },
+                        (error) => {
+                            alert("Error saving settings: \n\n" + error);
+                        }
+                    );
+                    this.router.navigate(["/"]);
+                }
+                else {
+                    alert("credentials are not OK");
+                }
             },
-            (error) => {
-                alert("Error saving settings: \n\n" + error);
+            error => {
+                console.log("error");        
             }
         );
+
+
     }
 }
